@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-import  getPatients  from './patients.service';
+import  getPatients  from '../services/patients.service';
 
 /**
      "id": "341877fb-084c-430e-8b64-0de2ec41cf99",
@@ -18,19 +18,34 @@ const columns = [
   { field: 'phone', headerName: 'Phone', width: 150 },
   { field: 'email', headerName: 'Email', width: 150 },
   { field: 'records', headerName: 'Records', width: 150 },
+   {
+    field: 'action',
+    headerName: 'Action',
+    sortable: false,
+    renderCell: (params) => {
+      const onClick = (e) => {
+        e.stopPropagation(); // don't select this row after clicking
+
+        const api = params.api;
+        const thisRow = {};
+
+        api
+          .getAllColumns()
+          .filter((c) => c.field !== '__check__' && !!c)
+          .forEach(
+            (c) => (thisRow[c.field] = params.getValue(params.id, c.field)),
+          );
+
+        return alert(JSON.stringify(thisRow, null, 4));
+      };
+
+      return <button onClick={onClick}>Click</button>;
+    },
+  },
 
 ];
 
 
-/**
- import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
- */
 
 
 
@@ -51,9 +66,7 @@ export default function DataTable() {
       <DataGrid
         rows={patients}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
+      
       />
     </div>);
 }
