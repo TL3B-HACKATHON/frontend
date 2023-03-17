@@ -34,8 +34,8 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="/dashboard" element={<ProtectedLayout />}>
-        <Route path="/patients" element={<Patient />} />
-        <Route path="/reports" element={<Patient />} />
+        <Route path="patients" element={<Patient />} />
+        <Route path="reports" element={<Patient />} />
       </Route>
     </Route>
   )
