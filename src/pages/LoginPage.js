@@ -1,0 +1,8 @@
+import React from "react";
+
+// Home.jsx
+export const LoginPage = () => (
+  <div>
+    <h1>This is the Login Page</h1>
+  </div>
+);
