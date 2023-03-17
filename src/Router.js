@@ -2,7 +2,7 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-  defer
+  defer,
 } from "react-router-dom";
 
 import { AuthLayout } from "./components/AuthLayout";
@@ -34,7 +34,9 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="/dashboard" element={<ProtectedLayout />}>
-          <Route path="profile" element={<ProfilePage />} />
+        <Route path="stats" element={<ProfilePage />} />
+        <Route path="patients" element={<ProfilePage />} />
+        <Route path="reports" element={<ProfilePage />} />
       </Route>
     </Route>
   )
