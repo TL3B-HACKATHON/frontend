@@ -12,6 +12,7 @@ import { ProtectedLayout } from "./components/ProtectedLayout";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import MedicalProfile from "./pages/MedicalProfile";
 
 // ideally this would be an API call to server to get logged in user data
 const getUserData = () =>
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
 
       <Route path="/dashboard" element={<ProtectedLayout />}>
         <Route path="stats" element={<ProfilePage />} />
+        <Route path="medical-profile/:userId" element={<MedicalProfile />} />
         <Route path="patients" element={<ProfilePage />} />
         <Route path="reports" element={<ProfilePage />} />
       </Route>
